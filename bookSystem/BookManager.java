@@ -1,14 +1,16 @@
+
 package bookSystem;
+// Source code is decompiled from a .class file using FernFlower decompiler.
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
+// import java.util.TreeSet;
 
 public class BookManager {
    private Map<String, List<Book>> books = new HashMap();
-   private TreeSet<Book> sortedBooks = new TreeSet();
+   private MyTreeSet<Book> sortedBooks = new MyTreeSet();
 
    public BookManager() {
    }
@@ -40,7 +42,11 @@ public class BookManager {
    }
 
    public List<Book> getAllBooks() {
-      return new ArrayList(this.sortedBooks);
+       List<Book> list = new ArrayList<>();
+       for (Book b : this.sortedBooks) {
+           list.add(b);
+       }
+       return list;
    }
 
    public void listAllBooks() {
@@ -57,4 +63,43 @@ public class BookManager {
 
       }
    }
+
+    public static void main(String[] args) {
+        BookManager manager = new BookManager();
+
+        // Creating Book instances
+        Book book1 = new Book("Algorithms", "CS101", 49.99, "Alice");
+        Book book2 = new Book("Data Structures", "CS102", 39.99, "Bob");
+        Book book3 = new Book("Java Programming", "CS103", 59.99, "Charlie");
+        Book book4 = new Book("Algorithms", "CS101", 49.99, "Alice");  // Duplicate of book1 (same title)
+
+        // Adding books
+        manager.addBook(book1);
+        manager.addBook(book2);
+        manager.addBook(book3);
+        manager.addBook(book4);
+
+        // Listing all books
+        System.out.println("=== All Books After Adding ===");
+        manager.listAllBooks();  // Expecting 4 books
+
+        // Get one book and remove it
+        Book retrieved = manager.getBook("Algorithms");
+        System.out.println("\nRetrieved: " + retrieved);
+        System.out.println("\n=== All Books After Retrieval ===");
+        manager.listAllBooks();  // Expecting 3 books, one removed
+
+        // Remove a specific book
+        manager.removeBook(book2);
+        System.out.println("\n=== All Books After Removal ===");
+        manager.listAllBooks();  // Expecting 2 books remaining
+
+        // Get Java Programming (case insensitive)
+        Book retrieved2 = manager.getBook("java programming");
+        System.out.println("\nRetrieved: " + retrieved2);
+
+        // Try to retrieve again (should be null as it's already removed)
+        Book retrieved3 = manager.getBook("Java Programming");
+        System.out.println("\nRetrieved (should be null): " + retrieved3);
+    }
 }
