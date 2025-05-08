@@ -148,6 +148,7 @@ public class BookExchangeGUI extends JFrame {
         displayArea.setForeground(Color.BLACK);
     }
 
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(BookExchangeGUI::new);
     }
