@@ -1,6 +1,6 @@
-
+// File: Book.java
 package bookSystem;
-// Source code is decompiled from a .class file using FernFlower decompiler.
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,8 +9,8 @@ import java.util.Map;
 // import java.util.TreeSet;
 
 public class BookManager {
-   private Map<String, List<Book>> books = new HashMap();
-   private MyTreeSet<Book> sortedBooks = new MyTreeSet();
+   private Map<String, List<Book>> books = new HashMap<>();
+   private MyTreeSet<Book> sortedBooks = new MyTreeSet<>();
 
    public BookManager() {
    }

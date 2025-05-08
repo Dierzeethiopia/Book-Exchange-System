@@ -77,12 +77,11 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
     //remove an element
     public boolean remove(E data){
     	Node x = helperRemove(root, data);
-    	size--;
-
-    	if (x == null){
-    		return false;
-    	}
-    	return true;
+        if (x != null) {
+            size--;
+            return true;
+        }
+        return false;
     }
 
     private Node helperRemove(Node current, E data){
