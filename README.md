@@ -20,14 +20,22 @@ A Java-based Book Exchange System with a graphical user interface (GUI) built us
 ##  Project Structure
 
 BookExchangeSystem/
+
 │
 ├── **Book.java** # Represents a book with title, author, and seller
+
 ├── **BookManager.java** # Manages books using HashMap and MyTreeSet
+
 ├── **Request.java** # Represents a book request
+
 ├── **RequestManager.java** # Manages book requests
+
 ├── **MyTreeSet.java** # Custom generic binary search tree to store books in sorted order
+
 ├── **BookExchangeGUI.java # Main GUI class built using Swing
+
 └── **README.md** # Project documentation
+
 
 
 
