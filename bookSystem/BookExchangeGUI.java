@@ -17,7 +17,7 @@ public class BookExchangeGUI extends JFrame {
 
     // Constructor for the GUI
     public BookExchangeGUI() {
-        setTitle("📚 Textbook Exchange System");
+        setTitle("📚 Textbook Exchange System 📚");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());

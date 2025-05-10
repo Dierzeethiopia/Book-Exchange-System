@@ -25,10 +25,7 @@ public class RequestManager {
         requests.add(request);
     }
 
-    /**
-     * Returns the list of all requests.
-     * @return list of current requests
-     */
+    //Returns the list of all requests.
     public List<Request> getRequests() {
         return new ArrayList<>(requests); // defensive copy
     }
@@ -57,9 +54,7 @@ public class RequestManager {
         return log;
     }
 
-    /**
-     * Displays current requests in the console.
-     */
+    // Displays current requests in the console.
     public void displayRequests() {
         if (requests.isEmpty()) {
             System.out.println("No requests available.");
@@ -68,6 +63,30 @@ public class RequestManager {
                 System.out.println(request);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        BookManager bookManager = new BookManager();
+        bookManager.addBook(new Book("Intro to Java", "Author A", 49.99, "123"));
+        bookManager.addBook(new Book("Data Structures", "Author B", 59.99, "456"));
+        bookManager.addBook(new Book("Algorithms", "Author C", 69.99, "789"));
+
+
+        RequestManager requestManager = new RequestManager();
+        requestManager.addRequest(new Request("Data Structures", "Alice", 2));
+        requestManager.addRequest(new Request("Intro to Java", "Bob", 1));
+        requestManager.addRequest(new Request("Operating Systems", "Charlie", 3));
+
+        System.out.println("Current Requests:");
+        requestManager.displayRequests();
+
+        System.out.println("\nProcessing Requests:");
+        for (String logEntry : requestManager.processRequests(bookManager)) {
+            System.out.println(logEntry);
+        }
+
+        System.out.println("\nRequests after processing:");
+        requestManager.displayRequests();
     }
 }
 
