@@ -32,7 +32,7 @@ BookExchangeSystem/
 
 ├── **MyTreeSet.java** # Custom generic binary search tree to store books in sorted order
 
-├── **BookExchangeGUI.java # Main GUI class built using Swing
+├── **BookExchangeGUI.java** # Main GUI class built using Swing
 
 └── **README.md** # Project documentation
 
