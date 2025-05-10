@@ -170,16 +170,16 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
         for (int val : tree) {
             System.out.print(val + " ");
         }
-        System.out.println();
+        System.out.println(); // Output: 2 5 7 10 12 15 17
 
         // Remove leaf
         tree.remove(2);
-        System.out.println("\nAfter removing leaf (2):");
+        System.out.println("\nAfter removing leaf (2):"); 
        
         for (int val : tree) {
             System.out.print(val + " ");
         }
-        System.out.println();
+        System.out.println(); //Output: 5 7 10 12 15 17
 
         // Remove node with one child
         tree.remove(5);
@@ -187,7 +187,7 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
         for (int val : tree) {
             System.out.print(val + " ");
         }
-        System.out.println();
+        System.out.println(); // Output: 7 10 12 15 17
 
         // Remove node with two children
         tree.remove(15);
@@ -196,17 +196,17 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
         for (int val : tree) {
             System.out.print(val + " ");
         }
-        System.out.println();
+        System.out.println(); // Output: 7 10 12 17
 
         // Remove root
         tree.remove(10);
         System.out.println("\nAfter removing root (10):");
-        System.out.println(tree.isEmpty());
-        System.out.println(tree.size());
+        System.out.println(tree.isEmpty()); // output: false
+        System.out.println(tree.size());    // output: 3
        
 
         
-        System.out.println("\nFinal in-order:");
+        System.out.println("\nFinal in-order:"); // Expected: 7 12 17
         for (int val : tree) {
             System.out.print(val + " ");
         }
