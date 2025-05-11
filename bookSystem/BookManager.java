@@ -15,30 +15,44 @@ public class BookManager {
    public BookManager() {
    }
 
-   public void addBook(Book var1) {
-      String var2 = var1.getTitle().toLowerCase();
-      ((List)this.books.computeIfAbsent(var2, (var0) -> {
-         return new ArrayList();
-      })).add(var1);
-      this.sortedBooks.add(var1);
+   public void addBook(Book book) {
+      // get the title of book
+      String booktitle = book.getTitle().toLowerCase();
+
+      // 
+      List<Book> list = books.get(booktitle);
+      //string does not excist in the map, creat it with an empty list
+      if (list == null) {
+          list = new ArrayList<>();
+          books.put(booktitle, list);
+      }
+
+      // otherwise add the book to the list and also add it to the sorted books
+      list.add(book);
+
+      sortedBooks.add(book);
    }
 
-   public Book getBook(String var1) {
-      String var2 = var1.toLowerCase();
-      List var3 = (List)this.books.get(var2);
-      if (var3 != null && !var3.isEmpty()) {
-         Book var4 = (Book)var3.remove(0);
-         this.sortedBooks.remove(var4);
-         return var4;
+
+   public Book getBook(String title) {
+      List titleList = (List)this.books.get(title.toLowerCase());
+      if (titleList != null && !titleList.isEmpty()) {
+         Book book = (Book)titleList.remove(0);
+         this.sortedBooks.remove(book);
+         return book;
       } else {
          return null;
       }
    }
 
-   public void removeBook(Book var1) {
-      String var2 = var1.getTitle().toLowerCase();
-      ((List)this.books.getOrDefault(var2, new ArrayList())).remove(var1);
-      this.sortedBooks.remove(var1);
+   public void removeBook(Book book) {
+      String bookTitle = book.getTitle().toLowerCase();
+      List<Book> list = books.get(bookTitle);  
+      if (list != null) {
+          list.remove(book); 
+      }
+
+      sortedBooks.remove(book); 
    }
 
    public List<Book> getAllBooks() {
