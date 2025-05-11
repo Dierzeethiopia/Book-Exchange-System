@@ -53,15 +53,22 @@ public class BookExchangeGUI extends JFrame {
     // Method to list a book
     private void listBook() {
         String title = JOptionPane.showInputDialog("Enter book title:");
-        String course = JOptionPane.showInputDialog("Enter course code:");
-        String priceStr = JOptionPane.showInputDialog("Enter price:");
-        String seller = JOptionPane.showInputDialog("Enter your name:");
+        if (title == null || title.trim().isEmpty()) return;
 
-        if (title == null || course == null || priceStr == null || seller == null || 
-            title.isEmpty() || course.isEmpty() || priceStr.isEmpty() || seller.isEmpty()) {
-            displayError("❌ Please fill in all fields.");
-            return;
-        }
+        String course = JOptionPane.showInputDialog("Enter course code:");
+        if (course == null || course.trim().isEmpty()) return;
+
+        String priceStr = JOptionPane.showInputDialog("Enter price:");
+        if (priceStr == null || priceStr.trim().isEmpty()) return;
+
+        String seller = JOptionPane.showInputDialog("Enter your name:");
+        if (seller == null || seller.trim().isEmpty()) return;
+
+        // if (title == null || course == null || priceStr == null || seller == null || 
+        //     title.isEmpty() || course.isEmpty() || priceStr.isEmpty() || seller.isEmpty()) {
+        //     displayError("❌ Please fill in all fields.");
+        //     return;
+        // }
 
         try {
             double price = Double.parseDouble(priceStr);
@@ -78,13 +85,18 @@ public class BookExchangeGUI extends JFrame {
     // Method to request a book
     private void requestBook() {
         String title = JOptionPane.showInputDialog("Enter book title to request:");
-        String requester = JOptionPane.showInputDialog("Enter your name:");
-        String urgencyStr = JOptionPane.showInputDialog("Enter urgency (1 = high, 10 = low):");
+        if (title == null || title.trim().isEmpty()) return;
 
-        if (title == null || requester == null || urgencyStr == null || title.isEmpty() || requester.isEmpty() || urgencyStr.isEmpty()) {
-            displayError("❌ Please fill in all fields.");
-            return;
-        }
+        String requester = JOptionPane.showInputDialog("Enter your name:");
+        if (requester == null || requester.trim().isEmpty()) return;
+
+        String urgencyStr = JOptionPane.showInputDialog("Enter urgency (1 = high, 10 = low):");
+        if (urgencyStr == null || urgencyStr.trim().isEmpty()) return;
+
+        // if (title == null || requester == null || urgencyStr == null || title.isEmpty() || requester.isEmpty() || urgencyStr.isEmpty()) {
+        //     displayError("❌ Please fill in all fields.");
+        //     return;
+        // }
 
         try {
             int urgency = Integer.parseInt(urgencyStr);

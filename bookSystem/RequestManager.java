@@ -67,16 +67,17 @@ public class RequestManager {
 
     public static void main(String[] args) {
         BookManager bookManager = new BookManager();
-        bookManager.addBook(new Book("Intro to Java", "Author A", 49.99, "123"));
-        bookManager.addBook(new Book("Data Structures", "Author B", 59.99, "456"));
-        bookManager.addBook(new Book("Algorithms", "Author C", 69.99, "789"));
+        bookManager.addBook(new Book("Intro to Java", "123", 49.99, "Author A"));
+        bookManager.addBook(new Book("Data Structures", "456", 59.99, "Author B"));
+        bookManager.addBook(new Book("Algorithms", "789", 69.99, "Author C"));
 
 
         RequestManager requestManager = new RequestManager();
-        requestManager.addRequest(new Request("Data Structures", "Alice", 2));
+        requestManager.addRequest(new Request("Data Structures", "Alice", 5));
         requestManager.addRequest(new Request("Intro to Java", "Bob", 1));
-        requestManager.addRequest(new Request("Operating Systems", "Charlie", 3));
-
+        requestManager.addRequest(new Request("Data Structures", "Charlie", 3));
+        requestManager.addRequest(new Request("Data Structures", "ken", 1));
+        requestManager.addRequest(new Request("Data Structures", "matthew", 1));
         System.out.println("Current Requests:");
         requestManager.displayRequests();
 
