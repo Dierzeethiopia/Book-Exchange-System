@@ -1,7 +1,7 @@
 package bookSystem;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.*; // Abstract Window Toolkit
 import java.util.List;
 
 public class BookExchangeGUI extends JFrame {
