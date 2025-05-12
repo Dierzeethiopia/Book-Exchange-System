@@ -116,12 +116,12 @@ public class BookExchangeGUI extends JFrame {
 
         if (title == null || course == null || priceStr == null || seller == null ||
             title.isEmpty() || course.isEmpty() || priceStr.isEmpty() || seller.isEmpty()) {
-            displayError("❌ Please fill in all fields.");
+            displayError("Please fill in all fields.");
             return;
         }
         // if (title == null || course == null || priceStr == null || seller == null || 
         //     title.isEmpty() || course.isEmpty() || priceStr.isEmpty() || seller.isEmpty()) {
-        //     displayError("❌ Please fill in all fields.");
+        //     displayError("Please fill in all fields.");
         //     return;
         // }
 
@@ -130,10 +130,10 @@ public class BookExchangeGUI extends JFrame {
             int option = JOptionPane.showConfirmDialog(this, "Are you sure you want to list this book?");
             if (option == JOptionPane.YES_OPTION) {
                 bookManager.addBook(new Book(title, course, price, seller));
-                displaySuccess("✅ Book listed successfully!");
+                displaySuccess("Book listed successfully!");
             }
         } catch (NumberFormatException e) {
-            displayError("❌ Invalid price input.");
+            displayError("Invalid price input.");
         }
     }
 
@@ -149,14 +149,14 @@ public class BookExchangeGUI extends JFrame {
         if (urgencyStr == null || urgencyStr.trim().isEmpty()) return;
 
         // if (title == null || requester == null || urgencyStr == null || title.isEmpty() || requester.isEmpty() || urgencyStr.isEmpty()) {
-        //     displayError("❌ Please fill in all fields.");
+        //     displayError("Please fill in all fields.");
         //     return;
         // }
 
         try {
             int urgency = Integer.parseInt(urgencyStr);
             if (urgency < 1 || urgency > 10) {
-                displayError("❌ Urgency must be between 1 and 10.");
+                displayError("Urgency must be between 1 and 10.");
                 return;
             }
 
@@ -166,7 +166,7 @@ public class BookExchangeGUI extends JFrame {
                 displaySuccess("📥 Request submitted.");
             }
         } catch (NumberFormatException e) {
-            displayError("❌ Invalid urgency input.");
+            displayError("Invalid urgency input.");
         }
     }
 
@@ -175,11 +175,11 @@ public class BookExchangeGUI extends JFrame {
         List<Book> books = bookManager.getAllBooks();
         displayArea.setText(""); // Clear previous content
         if (books.isEmpty()) {
-            displayError("❌ No books available.");
+            displayError("No books available.");
             return;
         }
 
-        displayArea.append("📚 Available Books:\n\n");
+        displayArea.append("Available Books:\n\n");
         for (Book b : books) {
             displayArea.append("- " + b + "\n");
         }
@@ -189,11 +189,11 @@ public class BookExchangeGUI extends JFrame {
     private void processRequests() {
         List<String> logs = requestManager.processRequests(bookManager);
         if (logs.isEmpty()) {
-            displayError("❌ No requests to process.");
+            displayError("No requests to process.");
             return;
         }
 
-        displayArea.setText("🔄 Processing Requests:\n\n");
+        displayArea.setText("Processing Requests:\n\n");
         for (String log : logs) {
             displayArea.append(log + "\n");
         }
