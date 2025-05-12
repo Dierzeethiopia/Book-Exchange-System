@@ -1,0 +1,26 @@
+Augmented Reality,CS450,68.9,Blake
+Big Data Analytics,CS390,66.5,Vincent
+Blockchain Fundamentals,CS470,69.99,Dylan
+Cloud Computing,CS330,61.25,Oscar
+Computer Graphics,CS403,58.75,Jane
+Computer Networks,CS202,50.0,Eve
+Cybersecurity,CS310,53.0,Mia
+Data Mining,CS340,59.95,Paula
+Data Structures,CS102,39.99,Bob
+Database Systems,CS301,47.5,Frank
+Digital Logic Design,CS120,38.0,Abby
+Distributed Systems,CS430,62.25,Yara
+Ethical Hacking,CS440,56.0,Zane
+Game Development,CS360,57.0,Steve
+Human-Computer Interaction,CS350,54.0,Rachel
+Intro to CS,CS100,30.0,Quinn
+Java Programming,CS103,59.99,Charlie
+Machine Learning,CS402,65.0,Ian
+mark,mark,23.0,dires
+Mobile App Dev,CS211,46.5,Liam
+Natural Language Processing,CS420,64.75,Xander
+Operating Systems,CS201,45.0,Dave
+Parallel Programming,CS380,63.0,Uma
+Quantum Computing,CS410,70.0,Wendy
+Software Engineering,CS302,55.0,Grace
+Theory of Computation,CS370,52.5,Tina

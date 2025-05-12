@@ -57,6 +57,27 @@ public class Book implements Comparable<Book> {
         return this.title.compareToIgnoreCase(other.title);
     }
 
+    // Equals method to compare two Book objects
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Book other = (Book) obj;
+        return title.equalsIgnoreCase(other.title) && 
+               courseCode.equals(other.courseCode) && 
+               seller.equals(other.seller);
+    }
+
+    // HashCode method for the Book class
+    @Override
+    public int hashCode() {
+        return Objects.hash(title.toLowerCase(), courseCode, seller);
+    }
+
     //Returns a string representation of the book, including its title, price, course code, and seller.
     public String toString() {
         return title + " ($" + price + ") - Course: " + courseCode + ", Seller: " + seller;

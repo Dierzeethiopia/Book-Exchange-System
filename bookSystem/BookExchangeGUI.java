@@ -1,54 +1,104 @@
 package bookSystem;
 
 import javax.swing.*;
-import java.awt.*; // Abstract Window Toolkit
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 public class BookExchangeGUI extends JFrame {
-    private BookManager bookManager = new BookManager(); // Ensure this class exists
-    private RequestManager requestManager = new RequestManager(); // Ensure this class exists
+    private BookManager bookManager = new BookManager(); 
+    private RequestManager requestManager = new RequestManager(); 
 
     private JTextArea displayArea;
 
     // Method to clear the display area
     private void clearDisplay() {
         displayArea.setText("");
-    }
+    }ç
 
     // Constructor for the GUI
     public BookExchangeGUI() {
         setTitle("📚 Textbook Exchange System 📚");
-        setSize(600, 500);
+        setSize(700, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Center the window
         setLayout(new BorderLayout());
 
         displayArea = new JTextArea();
+        displayArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         displayArea.setEditable(false);
+        displayArea.setLineWrap(true);
+        displayArea.setWrapStyleWord(true);
+
         JScrollPane scrollPane = new JScrollPane(displayArea);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 4));
+        // Gradient center panel
+        JPanel centerPanel = new JPanel(new BorderLayout()) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                Color top = new Color(245, 250, 255);
+                Color bottom = new Color(230, 240, 250);
+                GradientPaint gp = new GradientPaint(0, 0, top, 0, getHeight(), bottom);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        centerPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createEmptyBorder(20, 20, 20, 20),
+            BorderFactory.createLineBorder(new Color(180, 200, 220), 2)
+        ));
+        centerPanel.setOpaque(false);
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
 
-        JButton listButton = new JButton("List Book");
-        JButton requestButton = new JButton("Request Book");
-        JButton viewButton = new JButton("View Books");
-        JButton processButton = new JButton("Process Requests");
+        // Button panel styling
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 4, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        buttonPanel.setBackground(new Color(225, 240, 255));
 
-        listButton.addActionListener(e -> listBook());
-        requestButton.addActionListener(e -> requestBook());
-        viewButton.addActionListener(e -> viewBooks());
-        processButton.addActionListener(e -> processRequests());
+        Color btnColor = new Color(222, 111, 33); // Cornflower Blue
+        Color textColor = Color.WHITE;
 
-        buttonPanel.add(listButton);
-        buttonPanel.add(requestButton);
-        buttonPanel.add(viewButton);
-        buttonPanel.add(processButton);
+        buttonPanel.add(createStyledButton("Add Book", btnColor, textColor, e -> listBook()));
+        buttonPanel.add(createStyledButton("Request Book", btnColor, textColor, e -> requestBook()));
+        buttonPanel.add(createStyledButton("View Books", btnColor, textColor, e -> viewBooks()));
+        buttonPanel.add(createStyledButton("Process Requests", btnColor, textColor, e -> processRequests()));
 
-        add(scrollPane, BorderLayout.CENTER);
+        add(centerPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
         setVisible(true);
     }
+
+    // Helper to create a styled JButton with better colors and visibility
+    private JButton createStyledButton(String text, Color bg, Color fg, java.awt.event.ActionListener action) {
+        JButton button = new JButton(text);
+        button.setBackground(new Color(72, 133, 237)); // Vibrant blue
+        button.setForeground(Color.BLUE);
+        button.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(22, 200, 222), 3),
+            BorderFactory.createEmptyBorder(10, 15, 10, 15)
+        ));
+
+        // Add a hover effect
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(100, 160, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(72, 133, 237));
+            }
+        });
+
+        button.addActionListener(action);
+        return button;
+    }
+
 
     // Method to list a book
     private void listBook() {
@@ -64,6 +114,11 @@ public class BookExchangeGUI extends JFrame {
         String seller = JOptionPane.showInputDialog("Enter your name:");
         if (seller == null || seller.trim().isEmpty()) return;
 
+        if (title == null || course == null || priceStr == null || seller == null ||
+            title.isEmpty() || course.isEmpty() || priceStr.isEmpty() || seller.isEmpty()) {
+            displayError("❌ Please fill in all fields.");
+            return;
+        }
         // if (title == null || course == null || priceStr == null || seller == null || 
         //     title.isEmpty() || course.isEmpty() || priceStr.isEmpty() || seller.isEmpty()) {
         //     displayError("❌ Please fill in all fields.");
@@ -124,7 +179,7 @@ public class BookExchangeGUI extends JFrame {
             return;
         }
 
-        displayArea.append("📚 Available Books:\n");
+        displayArea.append("📚 Available Books:\n\n");
         for (Book b : books) {
             displayArea.append("- " + b + "\n");
         }
@@ -138,7 +193,7 @@ public class BookExchangeGUI extends JFrame {
             return;
         }
 
-        displayArea.setText("🔄 Processing Requests:\n");
+        displayArea.setText("🔄 Processing Requests:\n\n");
         for (String log : logs) {
             displayArea.append(log + "\n");
         }
@@ -146,7 +201,7 @@ public class BookExchangeGUI extends JFrame {
 
     // Method to display error messages
     private void displayError(String message) {
-        displayArea.setText(""); // Clear previous content
+        displayArea.setText(""); 
         displayArea.setForeground(Color.RED);
         displayArea.append(message + "\n");
         displayArea.setForeground(Color.BLACK);
@@ -154,15 +209,13 @@ public class BookExchangeGUI extends JFrame {
 
     // Method to display success messages
     private void displaySuccess(String message) {
-        displayArea.setText(""); // Clear previous content
-        displayArea.setForeground(Color.GREEN);
+        displayArea.setText(""); 
+        displayArea.setForeground(new Color(0, 128, 0)); // Dark Green
         displayArea.append(message + "\n");
-        displayArea.setForeground(Color.BLACK);
+        displayArea.setForeground(Color.blue);
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(BookExchangeGUI::new);
     }
 }
-
-

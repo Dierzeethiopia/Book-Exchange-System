@@ -1,83 +1,100 @@
-// File: Book.java
 package bookSystem;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-// import java.util.TreeSet;
+import java.io.*;
+import java.util.*;
 
 public class BookManager {
-   private Map<String, List<Book>> books = new HashMap<>();
-   private MyTreeSet<Book> sortedBooks = new MyTreeSet<>();
+    private Map<String, List<Book>> books = new HashMap<>();
+    private MyTreeSet<Book> sortedBooks = new MyTreeSet<>();
+    private static final String FILE_NAME = "books.txt"; // File to store books data
 
-   public BookManager() {
-   }
+    public BookManager() {
+        loadBooks();
+    }
 
-   public void addBook(Book book) {
-      // get the title of book
-      String booktitle = book.getTitle().toLowerCase();
+    // Load books from the file
+    private void loadBooks() {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 4) {
+                    String title = parts[0].trim();
+                    String course = parts[1].trim();
+                    double price = Double.parseDouble(parts[2].trim());
+                    String seller = parts[3].trim();
+                    Book book = new Book(title, course, price, seller);
+                    addBook(book);  // Add to the internal structure
+                }
+            }
+        } catch (IOException e) {
+            // File not found, ignore and proceed with an empty list
+        }
+    }
 
-      // 
-      List<Book> list = books.get(booktitle);
-      //string does not excist in the map, creat it with an empty list
-      if (list == null) {
-          list = new ArrayList<>();
-          books.put(booktitle, list);
-      }
+    // Save books to the file
+    private void saveBooks() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Book book : sortedBooks) {
+                bw.write(book.getTitle() + "," + book.getCourseCode() + "," + book.getPrice() + "," + book.getSeller());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-      // otherwise add the book to the list and also add it to the sorted books
-      list.add(book);
+    // Add a new book
+    public void addBook(Book book) {
+        String title = book.getTitle().toLowerCase();
+        books.computeIfAbsent(title, k -> new ArrayList<>()).add(book);
+        sortedBooks.add(book);
+        saveBooks();  // Save books to file after adding a new one
+    }
 
-      sortedBooks.add(book);
-   }
+    // Get and remove a book by title
+    public Book getBook(String title) {
+        String key = title.toLowerCase();
+        List<Book> bookList = books.get(key);
+        if (bookList != null && !bookList.isEmpty()) {
+            Book book = bookList.remove(0);
+            sortedBooks.remove(book);
+            saveBooks();  // Save after removing
+            return book;
+        }
+        return null;
+    }
 
+    // Remove a specific book
+    public void removeBook(Book book) {
+        String title = book.getTitle().toLowerCase();
+        books.getOrDefault(title, new ArrayList<>()).remove(book);
+        sortedBooks.remove(book);
+        saveBooks();  // Save after removal
+    }
 
-   public Book getBook(String title) {
-      List titleList = (List)this.books.get(title.toLowerCase());
-      if (titleList != null && !titleList.isEmpty()) {
-         Book book = (Book)titleList.remove(0);
-         this.sortedBooks.remove(book);
-         return book;
-      } else {
-         return null;
-      }
-   }
+    // List all books
+    public List<Book> getAllBooks() {
+        List<Book> list = new ArrayList<>();
+        for (Book book : sortedBooks) {
+            list.add(book);
+        }
+        return list;
+    }
 
-   public void removeBook(Book book) {
-      String bookTitle = book.getTitle().toLowerCase();
-      List<Book> list = books.get(bookTitle);  
-      if (list != null) {
-          list.remove(book); 
-      }
+    // List all books (for debug or console output)
+    public void listAllBooks() {
+        if (sortedBooks.isEmpty()) {
+            System.out.println("No books available.");
+        } else {
+            System.out.println("\nAvailable Books:");
+            for (Book book : sortedBooks) {
+                System.out.println(book);
+            }
+        }
+    }
 
-      sortedBooks.remove(book); 
-   }
-
-   public List<Book> getAllBooks() {
-       List<Book> list = new ArrayList<>();
-       for (Book b : this.sortedBooks) {
-           list.add(b);
-       }
-       return list;
-   }
-
-   public void listAllBooks() {
-      if (this.sortedBooks.isEmpty()) {
-         System.out.println("No books available.");
-      } else {
-         System.out.println("\nAvailable Books:");
-         Iterator var1 = this.sortedBooks.iterator();
-
-         while(var1.hasNext()) {
-            Book var2 = (Book)var1.next();
-            System.out.println(var2);
-         }
-
-      }
-   }
-
+    // Main method to test the BookManager functionality
     public static void main(String[] args) {
         BookManager manager = new BookManager();
 
