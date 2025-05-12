@@ -40,5 +40,5 @@ BookExchangeSystem/
 #  How to Run
 1. **Clone the repository** or copy the source code to your local machine.
 2. Open the project in any Java IDE (e.g., IntelliJ, Eclipse) or use the terminal.
-3. Compile all `.java` files:   ```javac *.java ```
-4. Run the GUI:                 ```java BookExchangeGUI```
+3. Compile all `.java` files:   ```javac bookSystem/*.java  ```
+4. Run the GUI:                 ```java bookSystem.BookExchangeGUI```
