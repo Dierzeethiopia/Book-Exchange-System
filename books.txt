@@ -1,4 +1,4 @@
-Augmented Reality,CS450,68.9,Blake
+art,354,44.0,candy
 Big Data Analytics,CS390,66.5,Vincent
 Blockchain Fundamentals,CS470,69.99,Dylan
 Cloud Computing,CS330,61.25,Oscar

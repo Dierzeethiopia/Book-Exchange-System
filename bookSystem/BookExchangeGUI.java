@@ -14,7 +14,7 @@ public class BookExchangeGUI extends JFrame {
     // Method to clear the display area
     private void clearDisplay() {
         displayArea.setText("");
-    }ç
+    }
 
     // Constructor for the GUI
     public BookExchangeGUI() {

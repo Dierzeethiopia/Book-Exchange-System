@@ -12,12 +12,19 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
     	E data;
     	Node left;
     	Node right;
+        int height;
 
     	Node (E data){
     		this.data =data;
     		left = null;
     		right = null;
+            this.height = 1;
     	}
+    }
+
+    private int height(Node n) {
+        if (n == null) return 0;
+        return n.height;
     }
 
     //constractor
@@ -121,6 +128,32 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
             root = root.left;
         }
         return min;
+    }
+
+    private Node rotateRight(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+
+        x.right = y;
+        y.left = T2;
+
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+        return x;
+    }
+
+    private Node rotateLeft(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        y.left = x;
+        x.right = T2;
+
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+        return y;
     }
 
     // custom iterator 
