@@ -4,6 +4,8 @@ Access to textbooks and course materials can be a significant time and financial
 
 Our Java-based Book Exchange System uses Swing and AWT for the graphical user interface (GUI). This project allows users to add, remove, request, and process the exchange of books between sellers and buyers in a college setting.
 
+Our goal was to make it accessible for real-world use across the campus by enhancing the interface and features and deploying the system. However, due to time constraints, we were unable to fully achieve this.
+
 ######  Features
 - Add and remove books from the exchange system
 - View all books sorted by title
