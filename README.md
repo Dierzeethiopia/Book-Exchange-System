@@ -1,6 +1,6 @@
 #  Book Exchange System
 
-Access to textbooks and course materials can be a significant time and financial burden for students, and many are left with unused books after completing their courses. On our campus, we noticed that exchanging books among students and faculty is often inefficient and disorganized. So our main goal is to build a Book Exchange System that enables student  to list/add/post books they want to give away or exchange/sell, and find books they need from fellow students at an affordable price or for free if it's a give away.
+Access to textbooks and course materials can be a significant time and financial burden for students, and many are left with unused books after completing their courses. On our campus, we noticed that exchanging books among students and faculty is often inefficient and disorganized. So our main goal is to build a Book Exchange System that enables student  to add/post books they want to give away or exchange/sell, and find books they need from fellow students at an affordable price or for free if it's a give away.
 
 Our Java-based Book Exchange System uses Swing and AWT for the graphical user interface (GUI). This project allows users to add, remove, request, and process the exchange of books between sellers and buyers in a college setting.
 
