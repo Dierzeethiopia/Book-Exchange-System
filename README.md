@@ -41,12 +41,14 @@ BookExchangeSystem/
 1. **Clone the repository** or copy the source code to your local machine.
 2. Open the project in any Java IDE (e.g., IntelliJ, Eclipse) or use the terminal.
 3. Compile all `.java` files:
+   
                ```javac bookSystem/*.java```
-4. Run the GUI:
+5. Run the GUI:
+   
                ```java bookSystem.BookExchangeGUI```
 # How to manipulate
-1. Click ```Add book``` to add/sell books
-2. Click ```View Books`` to check if the book is added (ordered alphabetically) or to view all the available books
-   NB: We added around 20 books as a sample
+1. Click ```Add book``` to add/sell books.
+2. Click ```View Books``` to check if the book is added (ordered alphabetically) or to view all the available books. 
+   NB: We've added around 20 books as a sample.
 3. Click ```Reques book``` to request/buy a book and then ```Process Requests``` to proceed the transaction.
-   Due to the limit of time we had, we couldn't more feature to process the request
+   Due to the limit of time we had, we couldn't add more feature to process the request/transaction.
