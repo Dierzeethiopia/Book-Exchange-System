@@ -33,7 +33,7 @@ public class BookManager {
     }
 
     // Save books to the file
-    private void saveBooks() {
+    public void saveBooks() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Book book : sortedBooks) {
                 bw.write(book.getTitle() + "," + book.getCourseCode() + "," + book.getPrice() + "," + book.getSeller());

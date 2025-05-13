@@ -178,26 +178,41 @@ public class BookExchangeGUI extends JFrame {
             displayError("No books available.");
             return;
         }
-
-        displayArea.append("Available Books:\n\n");
+        
+        displayArea.append("AVAILABLE BOOKS:   [course title (price) - (course code),  (seller name) ] \n\n");
         for (Book b : books) {
-            displayArea.append("- " + b + "\n");
+            displayArea.append("=>  [ " + b + " ] \n");
         }
     }
 
     // Method to process all requests
+    // Method to process all requests
     private void processRequests() {
+        // Process requests and remove matched books from bookManager inside this method
         List<String> logs = requestManager.processRequests(bookManager);
+
         if (logs.isEmpty()) {
             displayError("No requests to process.");
             return;
         }
 
+        // Ask user for confirmation before proceeding
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to proceed?");
+        if (confirm == JOptionPane.YES_OPTION) {
+            // Save the updated book list to file AFTER removals have happened
+            bookManager.saveBooks();
+
+            // Show confirmation message
+            displaySuccess("Item is ordered successfully.");
+        }
+
+        // Display logs in the GUI
         displayArea.setText("Processing Requests:\n\n");
         for (String log : logs) {
             displayArea.append(log + "\n");
         }
     }
+
 
     // Method to display error messages
     private void displayError(String message) {

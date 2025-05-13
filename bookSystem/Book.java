@@ -80,7 +80,7 @@ public class Book implements Comparable<Book> {
 
     //Returns a string representation of the book, including its title, price, course code, and seller.
     public String toString() {
-        return title + " ($" + price + ") - Course: " + courseCode + ", Seller: " + seller;
+        return title + " ($" + price + ")  -  (Course Code: " + courseCode + "),   (Seller: " + seller+")";
     }
 
     //Main method for testing the Book class.
