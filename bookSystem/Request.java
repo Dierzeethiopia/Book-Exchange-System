@@ -15,6 +15,7 @@ public class Request implements Comparable<Request> {
     private int urgency; 
     private long timestamp;      // The urgency level (lower means less urgent)
 
+
     //Constructs a new Request with the specified title, requester, and urgency.
     public Request(String title, String requester, int urgency) {
         this.title = title;

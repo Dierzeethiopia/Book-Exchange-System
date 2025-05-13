@@ -22,6 +22,7 @@ public class MyTreeSet<E extends Comparable<E>> implements Iterable<E> ,SetADT<E
     	}
     }
 
+
     private int height(Node n) {
         if (n == null) return 0;
         return n.height;

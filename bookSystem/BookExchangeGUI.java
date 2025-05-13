@@ -16,6 +16,7 @@ public class BookExchangeGUI extends JFrame {
         displayArea.setText("");
     }
 
+
     // Constructor for the GUI
     public BookExchangeGUI() {
         setTitle("📚 Textbook Exchange System 📚");
