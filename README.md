@@ -47,7 +47,7 @@ BookExchangeSystem/
    
                ```java bookSystem.BookExchangeGUI```
 # How to manipulate
-1. Click ```Add book``` to add/sell books.
+1. Click ```Add book``` to add/sell books and enter all the fields with an appropriate type(string, integer...) about the book you want to get.
 2. Click ```View Books``` to check if the book is added (ordered alphabetically) or to view all the available books. 
    NB: We've added around 20 books as a sample.
 3. Click ```Reques book``` to request/buy a book and then ```Process Requests``` to proceed the transaction.
